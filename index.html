@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title id="titulo"></title>
+	<link id="icone_pag" rel="shortcut icon">
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous"></script>
+    <script src="src/jquery.fillcolor.js"></script>
+</head>
+
+<body>
+	<div id="fundo"></div>
+
+	<div class="example js-fillcolor">
+		<img id="icone_item">
+	</div>
+
+	<div id="filtro_carrega"></div>
+</body>
+
+<script type="text/javascript">
+	(function (){
+		fetch('https://raw.githubusercontent.com/brnd-21/inventario-mine/main/JSON/dados_locais.json')
+		.then(response => response.json())
+		.then(async res_artigo => {
+			
+			const i = Math.round((res_artigo.length - 1) * Math.random());
+			const url_completa = "https://raw.githubusercontent.com/brnd-21/inventario-mine/main/IMG/Itens/new/"+ res_artigo[i].tipo_item +"/"+ res_artigo[i].nome_icon;
+
+			// Altera o nome da guia
+			document.getElementById("titulo").innerHTML = res_artigo[i].nome_item;
+
+			// Altera o icone da guia
+			var link = document.querySelector("link[rel~='icon']");
+			if (!link) {
+			    link = document.createElement('link');
+			    link.rel = 'icon';
+			    document.getElementsByTagName('head')[0].appendChild(link);
+			}
+			link.href = url_completa;
+
+			// Altera os sprites dos itens para a cor de fundo e o que é exibido na tela
+			let cor_fundo = document.getElementById("icone_item");
+			cor_fundo.src = url_completa;
+			
+			let fundo = document.getElementById("fundo");
+			fundo.style.backgroundImage = "url('"+ url_completa +"')";
+
+			// Procura a cor com maior destaque do sprite e aplica de fundo
+			var _gaq = _gaq || [];
+		    _gaq.push(['_setAccount', 'UA-36251023-1']);
+			_gaq.push(['_setDomainName', 'jqueryscript.net']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+			   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+			(function ($) {
+            'use strict';
+            	$(function () {
+                $('.js-fillcolor').fillColor();
+            	});
+        	})(jQuery);
+
+        	// Recarrega a página automaticamente depois de 10 segundos
+        	setTimeout(() => {
+        		document.getElementById("filtro_carrega").style.animation = "carrega_fundo 2s";
+
+        		setTimeout(() => {
+        			document.getElementById("filtro_carrega").style.opacity = "1";
+        			location.reload();
+        		}, 2000);
+        	}, 10000);
+		});
+
+		// Define o tamanho do fundo para criar padrões aleatórios
+		let fundo = document.getElementById("fundo");
+		fundo.style.backgroundSize = 100 + (70 * Math.random()) +"px";
+		
+		// Define a inclinação dos itens na tela
+		fundo.style.transform = "rotate("+ (50 * Math.random()) +"deg)";
+	})();
+</script>
+</html>
