@@ -1,5 +1,6 @@
 body{
 	background-color: #29BB8E;
+	image-rendering: pixelated;
 }
 #fundo{
 	top: -800%;
@@ -16,6 +17,7 @@ body{
 }
 #icone_item{
 	opacity: 0;
+	z-index: 1;
 }
 .js-fillcolor{
 	position: fixed;
@@ -26,8 +28,15 @@ body{
 	top: 0px;
 	animation: carrega_fundo 1s;
 }
-img{
-	image-rendering: pixelated;
+#filtro_gradiente{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 1 !important;
+	background: rgb(1,1,5);
+	background: linear-gradient(0deg, rgba(1,1,5,0.6530987394957983) 13%, rgba(0,0,0,0.3449754901960784) 55%, rgba(255,255,255,0) 96%);
 }
 #filtro_carrega{
 	z-index: 5;
@@ -40,6 +49,19 @@ img{
 	animation: esconde_fundo 1s;
 	box-shadow: inset 0px 0px 50px black;
 	opacity: 0;
+}
+#programmers_art{
+	opacity: 0;
+	position: fixed;
+	right: 2%;
+	bottom: 2%;
+	z-index: 6;
+	padding: 5px;
+	padding-top: 10px;
+	border-radius: 20px;
+	background-color: rgba(0, 0, 0, .5);
+	border: solid 0px;
+	opacity: .5;
 }
 @keyframes carrega_fundo{
 	from { opacity: 0; }
