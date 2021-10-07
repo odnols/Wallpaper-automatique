@@ -1,8 +1,8 @@
-﻿# Wallpaper automátique 
+﻿# Wallpaper automatique
 
 -> Altera a cada 10 segundos apresentando os itens do Minecraft.
 
-Os Itens estão são escolhidos a partir de um JSON de um outro projeto meu, e os dados são retirados do mesmo! <br>
+Os Itens são escolhidos a partir de um JSON de um outro projeto meu e os dados são retirados do mesmo! <br>
 O Projeto é este << https://github.com/brnd-21/Inventario-mine >> <br><br>
 
 Este projeto também está hospedado pela Glitch <br>
