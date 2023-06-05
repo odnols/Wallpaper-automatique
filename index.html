@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title id="titulo">Carregando</title>
-	<link id="icone_pag" rel="shortcut icon">
+	<link id="icone_pag" rel="shortcut icon" src="img/icon.png">
 
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
@@ -39,7 +39,7 @@
 
 		programmers_art(1)
 
-		fetch('https://raw.githubusercontent.com/odnols/inventario-mine/main/Files/JSON/dados_locais.json')
+		fetch('https://raw.githubusercontent.com/odnols/Inventario-mine/main/files/JSON/dados_locais.json')
 			.then(response => response.json())
 			.then(async res_artigo => {
 
@@ -47,21 +47,21 @@
 
 				let classe = "classic" // Define se será o sprite antigo ou novo
 
-				if (res_artigo[i].programmer_art == 0 || programmer_art == 0)
+				if (res_artigo[i].legacy === false || programmer_art === false)
 					classe = "new"
-				
-				url_completa = `https://raw.githubusercontent.com/odnols/inventario-mine/main/IMG/Itens/${classe}/${res_artigo[i].tipo_item}/${res_artigo[i].nome_icon}`
+
+				url_completa = `https://raw.githubusercontent.com/odnols/Inventario-mine/main/img/itens/${classe}/${res_artigo[i].type}/${res_artigo[i].icon}`
 
 				// Altera o nome da guia
-				document.getElementById("titulo").innerHTML = res_artigo[i].nome_item
+				document.getElementById("titulo").innerHTML = res_artigo[i].name
 
 				// Altera o icone da guia
-				let link = document.querySelector("link[rel~='icon']");
+				let link = document.querySelector("link[rel~='icon']")
 
 				if (!link) {
-					link = document.createElement('link');
-					link.rel = 'icon';
-					document.getElementsByTagName('head')[0].appendChild(link);
+					link = document.createElement('link')
+					link.rel = 'icon'
+					document.getElementsByTagName('head')[0].appendChild(link)
 				}
 
 				link.href = url_completa
@@ -74,9 +74,9 @@
 				fundo.style.backgroundImage = `url('${url_completa}')`
 
 				// Procura a cor com maior destaque do sprite e aplica de fundo
-				var _gaq = _gaq || [];
-				_gaq.push(['_setAccount', 'UA-36251023-1']);
-				_gaq.push(['_setDomainName', 'jqueryscript.net']);
+				var _gaq = _gaq || []
+				_gaq.push(['_setAccount', 'UA-36251023-1'])
+				_gaq.push(['_setDomainName', 'jqueryscript.net'])
 				_gaq.push(['_trackPageview']);
 
 				(function () {
@@ -86,13 +86,13 @@
 				})();
 
 				(function ($) {
-					'use strict';
+					'use strict'
 					$(function () {
-					$('.js-fillcolor').fillColor();
-					});
+						$('.js-fillcolor').fillColor()
+					})
 				})(jQuery);
 
-				// Recarrega a página automaticamente depois de 10 segundos
+				// Recarrega a página automaticamente depois de 12 segundos
 				setTimeout(() => {
 					document.getElementById("filtro_carrega").style.animation = "carrega_fundo 2s"
 
@@ -100,7 +100,7 @@
 						document.getElementById("filtro_carrega").style.opacity = "1"
 						location.reload()
 					}, 2000)
-				}, 10000)
+				}, 12000)
 			})
 
 		// Define o tamanho do fundo para criar padrões aleatórios
